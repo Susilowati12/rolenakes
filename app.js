@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('./config/db');
+const cors=require('cors')
 const app = express()
 
 const allRoutes = require('./routes');
@@ -13,7 +14,7 @@ then(() => {
 .catch((err) => {
   console.log(err);
 })
-
+app.use(cors())
 app.use(express.json())
 app.use(allRoutes)
 
