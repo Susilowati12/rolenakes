@@ -10,7 +10,7 @@ const {
   deletePasien,
   updatePasienByID,
 } = require("../controllers/pasien.controller");
-router.use([auth.verifyToken, auth.isNakes]);
+// router.use([auth.verifyToken, auth.isNakes]);
 router.get("/",  getAllPasien);
 router.get("/:id",  getPasienByID);
 router.post("/", addPasien);
