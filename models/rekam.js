@@ -7,9 +7,18 @@ const rekamSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Konsultasi",
     },
-    anamnesis: String,
-    diagnosis: String,
-    obat: String,
+    anamnesis: {
+        type: String,
+        required: true,
+      },
+    diagnosis: {
+        type: String,
+        required: true,
+      },
+    obat : {
+        type: String,
+        required: true,
+      },
 })
 
 const Rekam = mongoose.model("rekam", rekamSchema)

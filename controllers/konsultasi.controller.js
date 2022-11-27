@@ -7,8 +7,8 @@ module.exports = {
         .populate("pasien", "Nama")
         .populate("dokter", "username");
       res.status(200).json(konsultasi);
-    } catch (err) {
-      res.status(403).json({ message: err });
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
   },
   getKonsultasiById: async (req, res) => {
@@ -17,8 +17,8 @@ module.exports = {
         .populate("pasien", "Nama")
         .populate("dokter", "username");
       res.status(200).json(konsultasi);
-    } catch (err) {
-      res.status(403).json({ message: err });
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
   },
   addKonsultasi: async (req, res) => {
@@ -30,8 +30,8 @@ module.exports = {
     try {
       const savedKonsultasi = await konsultasi.save();
       res.status(200).json(savedKonsultasi);
-    } catch (err) {
-      res.status(403).json({ message: err });
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
   },
 
@@ -49,8 +49,8 @@ module.exports = {
         }
       );
       res.status(200).json(updatedKonsultasi);
-    } catch (err) {
-      res.status(403).json({ message: err });
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
   },
   deleteKonsultasi: async (req, res) => {
@@ -59,8 +59,8 @@ module.exports = {
         _id: req.params.konsultasiId,
       });
       res.status(200).json(removedKonsultasi);
-    } catch (err) {
-      res.status(403).json({ message: err });
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
   },
 };

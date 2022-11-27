@@ -35,7 +35,7 @@ const pasienSchema = new Schema({
     required: [true, "No telepon tidak boleh kosong"],
   },
   Alergi_obat: {
-    type: Boolean,
+    type: String,
     required: [true, "No telepon tidak boleh kosong"],
   },
   Pekerjaan: {

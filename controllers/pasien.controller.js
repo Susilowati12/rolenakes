@@ -9,10 +9,8 @@ module.exports = {
         message: "success get data pasien",
         data: pasien
       })
-    } catch (err) {
-      res.status(500).json({
-        message: "internal server error",
-      })
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
 
   },
@@ -22,16 +20,14 @@ module.exports = {
       const { id } = req.params
       const pasien = await Pasien.findById(id)
       if (pasien === null) {
-        res.status(404).json({
+        res.status(401).json({
           message: "Pasien not found",
         })
       } else {
         res.status(200).json(pasien);
       }
-    } catch (err) {
-      res.status(500).json({
-        message: "internal server error",
-      })
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
 
   },
@@ -44,10 +40,8 @@ module.exports = {
       res.status(200).json({
         message: "data has been created!!",
       })
-    } catch (err) {
-      res.status(500).json({
-        message: "internal server error",
-      })
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
   },
 
@@ -58,12 +52,9 @@ module.exports = {
       res.status(200).json({
         message: "delete pasien succsess",
       });
-    } catch (err) {
-      res.status(500).json({
-        message: "internal server error",
-      })
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
-
   },
   deletePasien: async (req, res) => {
     try {
@@ -71,10 +62,8 @@ module.exports = {
       res.status(200).json({
         message: "delete pasien succsess",
       });
-    } catch (err) {
-      res.status(500).json({
-        message: "internal server error",
-      })
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
     }
   },
 
@@ -82,8 +71,8 @@ module.exports = {
     try {
       const updatedPasien = await Pasien.updateOne({ _id: req.params.id }, { $set: req.body });
       res.status(200).json({ message: "berhasil update data", data: updatedPasien });
-    } catch (error) {
-      res.status(500).json({ message: error.message });
+    } catch (err) {
+      res.status(403).json({ message: err });
     }
   }
 }

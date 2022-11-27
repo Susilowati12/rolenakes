@@ -17,8 +17,7 @@ router.use(function (req, res, next) {
   );
   next();
 });
-router.get("/", [auth.verifyToken], getAllPasien);
-router.get("/:id", [auth.verifyToken], getPasienByID);
+router.get("/", [auth.verifyToken, auth.isNakes], getAllPasien);
 router.post("/", [auth.verifyToken, auth.isNakes], addPasien);
 router.delete("/:id", [auth.verifyToken, auth.isNakes], deletePasienByID);
 router.delete("/", [auth.verifyToken, auth.isNakes], deletePasien);
