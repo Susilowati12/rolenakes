@@ -10,17 +10,12 @@ const {
   deletePasien,
   updatePasienByID,
 } = require("../controllers/pasien.controller");
-router.use(function (req, res, next) {
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, Content-Type, Accept"
-  );
-  next();
-});
-router.get("/", [auth.verifyToken, auth.isNakes], getAllPasien);
-router.post("/", [auth.verifyToken, auth.isNakes], addPasien);
-router.delete("/:id", [auth.verifyToken, auth.isNakes], deletePasienByID);
-router.delete("/", [auth.verifyToken, auth.isNakes], deletePasien);
-router.patch("/:id", [auth.verifyToken, auth.isNakes], updatePasienByID);
+router.use([auth.verifyToken, auth.isNakes]);
+router.get("/",  getAllPasien);
+router.get("/:id",  getPasienByID);
+router.post("/", addPasien);
+router.delete("/:id", deletePasienByID);
+router.delete("/", deletePasien);
+router.patch("/:id",updatePasienByID);
 
 module.exports = router;

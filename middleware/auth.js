@@ -12,12 +12,12 @@ verifyToken = (req, res, next) => {
             return res.status(401).send({ message: "Unauthorized!" });
         }
         req.userId = decoded;
-        console.log(decoded)
+       
         next();
     });
 };
 isNakes = (req, res, next) => {
-    console.log(req.userId.role)
+   
     if (req.userId.role == "nakes") {
         next();
         return;
