@@ -8,7 +8,7 @@ const {
   deleterekamByID,
   updaterekamByID,
 } = require("../controllers/rekam.controller");
-// router.use([auth.verifyToken, auth.isDokter]);
+router.use([auth.verifyToken, auth.isDokter]);
 router.get("/", getAllrekam);
 router.get("/:id", getrekamByID);
 router.post("/", addrekam);

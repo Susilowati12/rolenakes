@@ -10,7 +10,7 @@ const {
   deleteKonsultasi,
 } = require("../controllers/konsultasi.controller");
 
-// router.use([auth.verifyToken, auth.isNakes]) 
+router.use([auth.verifyToken, auth.isNakes]) 
 
 router.get("/", getAllKonsultasi);
 router.get("/:konsultasiId",getKonsultasiById);
