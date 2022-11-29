@@ -4,7 +4,7 @@ const Pasien = require("../models/pasien")
 module.exports = {
   getAllPasien: async (req, res) => {
     try {
-      const pasien = await Pasien.find({}, "-__v").populate("user", "name")
+      const pasien = await Pasien.find({}, "-__v")
       res.status(201).json({
         message: "success get data pasien",
         data: pasien
