@@ -53,16 +53,35 @@ module.exports = {
   },
 
   getAllUser: async (req, res) => {
-    try {
-      const users = await User.find({}, "-__v -password")
-      res.status(201).json({
-        message: "success get data user",
-        data: users
-      })
-    } catch (error) {
-      res.status(500).json({ message: "Server Error" });
-    }
-  },
+   
+      if (req.query.nik) {
+        try {
+          const pasien = await Pasien.find({ nik: req.query.nik });
+          res.status(200).json({
+            message: "Successfully get patient data",
+            data: pasien,
+          });
+        } catch (err) {
+          res.status(400).json({
+            message: "Failed to get patient data",
+            data: err,
+          });
+        }
+      } else {
+        try {
+          const pasien = await Pasien.find({}, "-__v");
+          res.status(200).json({
+            message: "Success get data pasien",
+            data: pasien,
+          });
+        } catch (err) {
+          res.status(500).json({
+            message: "Internal server error",
+            data: err,
+          });
+        }
+      }
+    },
 
   getUserByID: async (req, res) => {
     try {
