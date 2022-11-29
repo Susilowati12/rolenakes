@@ -42,10 +42,7 @@ const pasienSchema = new Schema({
     type: String,
     required: [true, "No telepon tidak boleh kosong"],
   },
-  user: {
-    type: mongoose.ObjectId,
-    ref: "User"
-  }
+ 
 })
 
 const Pasien = mongoose.model("Pasien", pasienSchema)
