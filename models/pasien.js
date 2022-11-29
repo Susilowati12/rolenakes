@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose
 
 const pasienSchema = new Schema({
-  Nik: {
+  nik: {
     type: Number,
     required: [true, "Nik tidak boleh kosong"],
     validate: {
@@ -14,31 +14,31 @@ const pasienSchema = new Schema({
       message: (props) => "Data already taken",
     }
   },
-  Nama: {
+  nama: {
     type: String,
     required: [true, "Nama tidak boleh kosong"],
   },
-  Jenis_kelamin: {
+  jenis_kelamin: {
     type: String,
     required: [true, "Jenis kelamin tidak boleh kosong"],
   },
-  Tanggal_lahir: {
+  tanggal_lahir: {
     type: Date,
     required: [true, "Tanggal lahir tidak boleh kosong"],
   },
-  Alamat: {
+  alamat: {
     type: String,
     required: [true, "Alamat tidak boleh kosong"],
   },
-  No_Telp: {
+  no_Telp: {
     type: Number,
     required: [true, "No telepon tidak boleh kosong"],
   },
-  Alergi_obat: {
+  alergi_obat: {
     type: String,
     required: [true, "No telepon tidak boleh kosong"],
   },
-  Pekerjaan: {
+  pekerjaan: {
     type: String,
     required: [true, "No telepon tidak boleh kosong"],
   },
