@@ -6,20 +6,20 @@ module.exports = {
 
 
   login: (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    User.findOne({ username })
+    User.findOne({ email })
       .then((data) => {
         bcrypt.compare(password, data.password, (err, result) => {
           if (err) {
             res.status(500).json({ message: err });
           } else {
             if (result) {
-
+              
               const token = jwt.sign({ id: data._id, role: data.roles }, KEY);
               res
-                .status(200)
-                .json({ message: "Login is successfull", token: token });
+                .status(201)
+                .json({ message: "Login is successfull", token: token, id: data._id,username:data.username,email:data.email, role:data.roles});
             } else {
               res.status(403).json({ message: "Login is failed" });
             }
@@ -27,7 +27,7 @@ module.exports = {
         });
       })
       .catch((err) => {
-        res.status(403).json({ message: "Login is failed" });
+        res.status(403).json({ message: "Login is failed"  });
       });
   },
 
@@ -42,7 +42,7 @@ module.exports = {
       // console.log(user)
       user.save()
 
-      res.json({
+      res.status(201).json({
         message: "register berhasil",
       })
     } catch (error) {
@@ -55,7 +55,7 @@ module.exports = {
   getAllUser: async (req, res) => {
     try {
       const users = await User.find({}, "-__v -password")
-      res.json({
+      res.status(201).json({
         message: "success get data user",
         data: users
       })
@@ -67,7 +67,7 @@ module.exports = {
   getUserByID: async (req, res) => {
     try {
       const users = await User.find({}, "-__v -password")
-      res.status(200).json({
+      res.status(201).json({
         message: "Getting Data",
         data: users
       })

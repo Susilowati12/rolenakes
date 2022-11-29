@@ -5,7 +5,7 @@ module.exports = {
   getAllPasien: async (req, res) => {
     try {
       const pasien = await Pasien.find({}, "-__v").populate("user", "name")
-      res.status(200).json({
+      res.status(201).json({
         message: "success get data pasien",
         data: pasien
       })
@@ -24,7 +24,7 @@ module.exports = {
           message: "Pasien not found",
         })
       } else {
-        res.status(200).json(pasien);
+        res.status(201).json(pasien);
       }
     } catch (error) {
       res.status(500).json({ message: "Server Error" });
@@ -37,7 +37,7 @@ module.exports = {
       const data = req.body
       const user = new Pasien(data)
       await user.save()
-      res.status(200).json({
+      res.status(201).json({
         message: "data has been created!!",
       })
     } catch (error) {
@@ -49,7 +49,7 @@ module.exports = {
     try {
       const data = req.body
       await Pasien.deleteOne({ id: data._id })
-      res.status(200).json({
+      res.status(201).json({
         message: "delete pasien succsess",
       });
     } catch (error) {
@@ -59,7 +59,7 @@ module.exports = {
   deletePasien: async (req, res) => {
     try {
       await Pasien.deleteMany();
-      res.status(200).json({
+      res.status(201).json({
         message: "delete pasien succsess",
       });
     } catch (error) {
@@ -70,7 +70,7 @@ module.exports = {
   updatePasienByID: async (req, res) => {
     try {
       const updatedPasien = await Pasien.updateOne({ _id: req.params.id }, { $set: req.body });
-      res.status(200).json({ message: "berhasil update data", data: updatedPasien });
+      res.status(201).json({ message: "berhasil update data", data: updatedPasien });
     } catch (err) {
       res.status(403).json({ message: err });
     }

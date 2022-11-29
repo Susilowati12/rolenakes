@@ -5,7 +5,7 @@ module.exports = {
   getAllrekam: async (req, res) => {
     try {
       const rekam = await Rekam.find().populate("id_konsultasi", "pasien");
-      res.json({
+      res.status(201).json({
         message: "success get data Rekam Medis",
         data: rekam,
       });
@@ -22,7 +22,7 @@ module.exports = {
           message: "Could not Found",
         });
       } else {
-        res.status(200).json({
+        res.status(201).json({
           message: "You Searched for",
           data: rekam,
         });
@@ -39,7 +39,7 @@ module.exports = {
     // console.log(rekam)
     rekam.save();
 
-    res.json({
+    res.status(201).json({
       message: "Rekam Medis has been created!!",
     });
   },

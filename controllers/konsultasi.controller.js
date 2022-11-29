@@ -6,7 +6,7 @@ module.exports = {
       const konsultasi = await Konsultasi.find()
         .populate("pasien", "Nama")
         .populate("dokter", "username");
-      res.status(200).json(konsultasi);
+      res.status(201).json(konsultasi);
     } catch (error) {
       res.status(500).json({ message: "Server Error" });
     }
@@ -16,7 +16,7 @@ module.exports = {
       const konsultasi = await Konsultasi.findById(req.params.konsultasiId)
         .populate("pasien", "Nama")
         .populate("dokter", "username");
-      res.status(200).json(konsultasi);
+      res.status(201).json(konsultasi);
     } catch (error) {
       res.status(500).json({ message: "Server Error" });
     }
@@ -29,7 +29,7 @@ module.exports = {
     });
     try {
       const savedKonsultasi = await konsultasi.save();
-      res.status(200).json(savedKonsultasi);
+      res.status(201).json(savedKonsultasi);
     } catch (error) {
       res.status(500).json({ message: "Server Error" });
     }
@@ -48,7 +48,7 @@ module.exports = {
           },
         }
       );
-      res.status(200).json(updatedKonsultasi);
+      res.status(201).json(updatedKonsultasi);
     } catch (error) {
       res.status(500).json({ message: "Server Error" });
     }
@@ -58,7 +58,7 @@ module.exports = {
       const removedKonsultasi = await Konsultasi.remove({
         _id: req.params.konsultasiId,
       });
-      res.status(200).json(removedKonsultasi);
+      res.status(201).json(removedKonsultasi);
     } catch (error) {
       res.status(500).json({ message: "Server Error" });
     }
