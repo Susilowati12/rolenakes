@@ -5,6 +5,7 @@ const {
 
   login,
   register,
+  logout,
   getAllUser,
   getUserByID,
   deleteUserByID,
@@ -12,6 +13,7 @@ const {
 } = require("../controllers/user.controller");
 
 router.post("/login", login);
+router.post("/logout", logout);
 router.post("/register", register);
 router.get("/", getAllUser);
 router.get("/:id", getUserByID);

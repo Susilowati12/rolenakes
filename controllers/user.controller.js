@@ -51,7 +51,14 @@ module.exports = {
       });
     }
   },
-
+  logout: async (req, res) => {
+    try {
+      
+      return res.status(200).send({ message: "You've been signed out!" });
+    } catch (err) {
+      this.next(err);
+    }
+  },
   getAllUser: async (req, res) => {
    
       if (req.query.nik) {
